@@ -32,14 +32,14 @@ die('error connecting to MySql server');
         else {
           // The username/password are incorrect so set an error message
           $error_msg = 'Sorry, you must enter a valid username and password to log in.';
-		  $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '#/primary';
+		  $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/Hospital/#/primary';
           header('Location: ' . $home_url);
         }
       }
       else {
         // The username/password weren't entered so set an error message
         $error_msg = 'Sorry, you must enter your username and password to log in.';
-		 $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '#/primary';
+		 $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/Hospital/#/primary';
           header('Location: ' . $home_url);
       }
     }
@@ -53,7 +53,7 @@ die('error connecting to MySql server');
 <html>
 <head>
 	<title>Admin page</title>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 
 </head>
 <style>

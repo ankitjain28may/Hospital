@@ -18,8 +18,8 @@ session_start();
 
   <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="w3.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/w3.css">
   </head>
   <style>
 body {
@@ -138,7 +138,7 @@ echo '<br>';
 
 <footer class="w3-container w3-teal w3-margin-top">
  
- <p><?php echo '<a  type="button" class="pull-right" href="' . 'mfiles/' . $row['sreport'] . '" target="_blank" /><h4>View File</h4></a></p>'.'<br>';?></hr ></p>
+ <p><?php echo '<a  type="button" class="pull-right" href="' . '../mfiles/' . $row['sreport'] . '" target="_blank" /><h4>View File</h4></a></p>'.'<br>';?></hr ></p>
 </footer><?php
 
 ?></div><?php

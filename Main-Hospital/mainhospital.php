@@ -18,10 +18,10 @@
 <head >
 
 	<title>Main page</title>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<script type="text/javascript" src="js/angular.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+<script type="text/javascript" src="../js/angular.min.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="mainhospitalcontroller.js"></script>
+<script type="text/javascript" src="../js/mainhospitalcontroller.js"></script>
 
 </head>
   <style>
@@ -89,7 +89,7 @@ if (isset($_SESSION['usermain'])) {
     
   </div>
   <div class="col-md-6 col-xs-12 col-sm-12">
-  <a href="files/{{dat.p_file}}"><h5>Download</h5></a>
+  <a href="../files/{{dat.p_file}}"><h5>Download</h5></a>
    </div>
  </div>
  <div class="row">

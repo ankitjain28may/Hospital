@@ -32,14 +32,14 @@ die('error connecting to MySql server');
         else {
           // The username/password are incorrect so set an error message
          
-		  $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '#/main';
+		  $home_url = 'http://' . $_SERVER['HTTP_HOST'] .'/Hospital/#/main';
           header('Location: ' . $home_url);
 		   $error_msg = 'Sorry, you must enter a valid username and password to log in.';
         }
       }
       else {
         // The username/password weren't entered so set an error message
-        $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '#/main';
+        $home_url = 'http://' . $_SERVER['HTTP_HOST'] .'/Hospital/#/main';
           header('Location: ' . $home_url);
 		   $error_msg = 'Sorry, you must enter a valid username and password to log in.';
       }
@@ -66,8 +66,8 @@ font-family: 'Montserrat', sans-serif;
 <html >
 <head>
 	<title>Main page</title>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<script type="text/javascript" src="backsketch.js/jquery.backsketch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+<script type="text/javascript" src="../backsketch.js/jquery.backsketch.min.js"></script>
 
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 </head>
