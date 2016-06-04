@@ -2,6 +2,7 @@
 header("Cache-Control: private, must-revalidate, max-age=0");
   header("Pragma: no-cache");
   header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+  require_once("connectvars.php");
   ?>
 <html ng-app="health">
 
@@ -18,7 +19,7 @@ header("Cache-Control: private, must-revalidate, max-age=0");
   }
    if((!isset($_SESSION['username'])) && (!isset($_COOKIE['username'])))
   {
-	  $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/login-primary.php';
+	  $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/#';
   header('Location: ' . $home_url);
   }
 ?>
@@ -50,17 +51,17 @@ font-family: 'Montserrat', sans-serif;
   </style>
 	<title>Patient page</title>
 
-<link rel="stylesheet" type="text/css" href="../../CSS/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="../../JS/angular.min.js"></script>
-<script type="text/javascript" src="../../JS/app.js"></script>
-<link rel="stylesheet" type="text/css" href="../../angular-loader/build/loading-bar.css">
-<script type="text/javascript" src="../../angular-loader/build/loading-bar.js"></script>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<link rel="stylesheet" type="text/css" href="angular-loader/build/loading-bar.css">
+<script type="text/javascript" src="angular-loader/build/loading-bar.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 </head>
 
@@ -74,9 +75,9 @@ font-family: 'Montserrat', sans-serif;
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="http://<?php echo DB_HOST;?>/Hospital/#">Home</a></li>
 
-      <li>   <a type="button" data-toggle="modal" data-target="#myModal">Register</a>
+      <li>   <a type="button" style="cursor:pointer;" data-toggle="modal" data-target="#myModal">Register</a>
 
 
 <div id="myModal" class="modal fade" role="dialog">
@@ -175,7 +176,10 @@ $hname=	$_SESSION['username'];
           $target = 'files/' . $report;
           if (move_uploaded_file($_FILES['report']['tmp_name'], $target)) {
             // Connect to the database
-            $dbc = mysqli_connect('localhost','root', '', 'healthcare');
+            $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
+or
+die('error connecting to MySql server');
+
 
             // Write the data to the database
             $query = "INSERT INTO patient_file(p_id,p_name,gender,dob,disease,p_file,ph_name,status) VALUES ( '$pid', '$pname','$gender','$dob','$dis', '$report','$hname','$status')";
@@ -224,12 +228,12 @@ $hname=	$_SESSION['username'];
     </div>
   <div class="row">
      <div class="col-md-6 col-xs-12 col-sm-12"><h4>Patient Report</h4></div>
-      <div class="col-md-6 col-xs-12 col-sm-12"><a href="../../files/{{name.p_file}}" target="_blank">{{name.p_file}}</a></div>
+      <div class="col-md-6 col-xs-12 col-sm-12"><a href="files/{{name.p_file}}" target="_blank">{{name.p_file}}</a></div>
     </div>
   
   <div class="row">
      <div class="col-md-6 col-xs-12 col-sm-12" ><h4>Status</h4></div>
-      <div class="col-md-6 col-xs-12 col-sm-12" ><a href="../../files/{{name.sreport}}" target="_blank">{{name.status}}</a></div>
+      <div class="col-md-6 col-xs-12 col-sm-12" ><a href="files/{{name.sreport}}" target="_blank">{{name.status}}</a></div>
     </div>
     <div class="row">
      <div class="textarea text-center col-md-12 col-xs-12 col-sm-12" ><h4>Doctors Advice For You:</h4></div>

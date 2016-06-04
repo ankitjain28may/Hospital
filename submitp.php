@@ -11,14 +11,15 @@ session_start();
   }
    if((!isset($_SESSION['username'])) && (!isset($_COOKIE['username'])))
   {
-    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '../../#/primary';
+    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '#/primary';
   }
+  require_once("connectvars.php");
   ?>
 
   <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../css/w3.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="w3.css">
   </head>
   <style>
 body {
@@ -53,9 +54,7 @@ a.pull-right {
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Page 1</a></li>
-        <li><a href="#">Page 2</a></li> 
+        <li class="active"><a href="http://<?php echo DB_HOST;?>/Hospital/#">Home</a></li>
         <li><?php echo ' <a href="logout.php">Log Out</a><span class="sessioncolor">(' . $_SESSION['username'] . ')</span><br/>';
   ?></li> 
       </ul>
@@ -67,9 +66,10 @@ a.pull-right {
     
 $id = $_GET['id'];
 
-$dbc = mysqli_connect('localhost','root','','healthcare')
+$dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
 or
 die('error connecting to MySql server');
+
 $query = "SELECT * FROM patient_file WHERE p_id='$id'";
 $result = mysqli_query($dbc,$query)
 or
@@ -138,7 +138,7 @@ echo '<br>';
 
 <footer class="w3-container w3-teal w3-margin-top">
  
- <p><?php echo '<a  type="button" class="pull-right" href="' . '../../mfiles/' . $row['sreport'] . '" target="_blank" /><h4>View File</h4></a></p>'.'<br>';?></hr ></p>
+ <p><?php echo '<a  type="button" class="pull-right" href="' . 'mfiles/' . $row['sreport'] . '" target="_blank" /><h4>View File</h4></a></p>'.'<br>';?></hr ></p>
 </footer><?php
 
 ?></div><?php

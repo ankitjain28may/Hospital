@@ -8,8 +8,10 @@
   if (!isset($_SESSION['usermain'])) {
     if (isset($_POST['submit'])) {
       // Connect to the database
-      $dbc = mysqli_connect('localhost','root','','healthcare');
-
+      require_once("connectvars.php");
+$dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
+or
+die('error connecting to MySql server');
       // Grab the user-entered log-in data
       $user_username = $_POST['mainid'];
       $user_password = mysqli_real_escape_string($dbc, trim($_POST['mainpass']));
@@ -30,14 +32,14 @@
         else {
           // The username/password are incorrect so set an error message
          
-		  $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/../../#/main';
+		  $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '#/main';
           header('Location: ' . $home_url);
 		   $error_msg = 'Sorry, you must enter a valid username and password to log in.';
         }
       }
       else {
         // The username/password weren't entered so set an error message
-        $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/../../#/main';
+        $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '#/main';
           header('Location: ' . $home_url);
 		   $error_msg = 'Sorry, you must enter a valid username and password to log in.';
       }
@@ -64,7 +66,7 @@ font-family: 'Montserrat', sans-serif;
 <html >
 <head>
 	<title>Main page</title>
-<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <script type="text/javascript" src="backsketch.js/jquery.backsketch.min.js"></script>
 
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
@@ -75,6 +77,17 @@ font-family: 'Montserrat', sans-serif;
   if (empty($_SESSION['usermain'])) {
     echo '<p class="error">' . $error_msg . '</p>';
 ?>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">E-village Aid</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        
+      </ul>
+</nav>  
 
 <div class="row">
 <div class="col-md-offset-3 col-md-6">
